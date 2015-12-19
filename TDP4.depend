@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1295809733 source:c:\users\emmanuel\documents\github\tdp4\compressor.cpp
+	"Compressor.h"
+
+1295730953 c:\users\emmanuel\documents\github\tdp4\compressor.h
+	<vector>
+	<fstream>
+	<cmath>
+	<iostream>
+
+1450521529 source:c:\users\emmanuel\documents\github\tdp4\countingset.cpp
+	"CountingSet.h"
+
+1450521698 c:\users\emmanuel\documents\github\tdp4\countingset.h
+	<vector>
+	<string>
+	<iostream>
+
+1295791169 source:c:\users\emmanuel\documents\github\tdp4\decompressor.cpp
+	"Decompressor.h"
+
+1295791169 c:\users\emmanuel\documents\github\tdp4\decompressor.h
+	<fstream>
+	<vector>
+	<algorithm>
+	<string>
+	"Compressor.h"
+
+1450471824 source:c:\users\emmanuel\documents\github\tdp4\huffmancoding.cpp
+	"HuffmanCoding.h"
+
+1450472789 c:\users\emmanuel\documents\github\tdp4\huffmancoding.h
+	<vector>
+	<algorithm>
+	<queue>
+
+1450521424 source:c:\users\emmanuel\documents\github\tdp4\main.cpp
+	<iostream>
+	"CountingSet.h"
+	"HuffmanCoding.h"
+	"Compressor.h"
+	"Decompressor.h"
+
