@@ -12,13 +12,13 @@ private:
 	bool done;
 	short endBlanks;
 	int maxSize;
-	vector<Pair> chrMap;
+	vector<Pair> strMap;
 	vector<unsigned char> head;
 	string bodyBuffer;
 	string fromFile, toFile;
 	void extract();
 	string getFromBuffer(ifstream&, int);
-	char getNext(ifstream&);
+	string getNext(ifstream&);
 	string charToBin(unsigned char);
 	int fileSize(const string);
 public:

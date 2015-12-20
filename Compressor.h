@@ -3,11 +3,14 @@
 #include <fstream>
 #include <cmath>
 #include <iostream>
+#include <string>
+#define LENGTH 2
+
 using namespace std;
 
 struct Pair
 {
-	char ch;
+	string str;
 	string code;
 };
 
@@ -17,7 +20,7 @@ private:
 	bool done;
 	short endBlanks;
 	vector<Pair> map;
-	vector<unsigned char> head;
+	vector<string> head;
 	string bodyBuffer;
 	string fromFile;
 	string toFile;

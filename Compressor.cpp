@@ -1,5 +1,6 @@
 #include "Compressor.h"
-
+#include <string>
+#include <stdlib.h>
 Compressor::Compressor(vector<Pair>& inMap)
 {
 	for (unsigned i=0; i<inMap.size(); ++i)
@@ -39,26 +40,35 @@ void Compressor::compress(string from, string to)
 void Compressor::createHead()
 {
 	head.push_back(0);
-	head.push_back(map.size());
-	for (unsigned i=0; i<map.size(); ++i)
-		head.push_back(map[i].ch);
-	for (unsigned i=0; i<map.size(); ++i)
-		head.push_back(map[i].code.size());
-	for (unsigned i=0; i<map.size(); ++i)
+	char* sizeOfCode = (char*) malloc(sizeof(int));
+	sprintf(sizeOfCode,"%d",map.size());
+	head.push_back(sizeOfCode); // TODO : caution when decompressing
+	for (unsigned i=0; i<map.size(); ++i){
+		head.push_back(map[i].str);
+	}
+	for (unsigned i=0; i<map.size(); ++i){
+        sprintf(sizeOfCode,"%d",map[i].code.size());
+		head.push_back(sizeOfCode);
+	}
+	for (unsigned i=0; i<map.size(); ++i){
 		bodyBuffer+=map[i].code;
+	}
 }
 
 string Compressor::loadBuffer(ifstream& strm)
 {
 	if (bodyBuffer.size()<256)
 	{
-		char chr;
+
 		while (bodyBuffer.size()<256)
 		{
-			chr = strm.get();
+            string str = "";
+		    for(int i = 0; i < LENGTH && bodyBuffer.size()<256; i++){
+                str.push_back(strm.get());
+		    }
 			if (strm.eof()) break;
 			for (unsigned j=0; j<map.size(); ++j)
-				if (map[j].ch==chr)
+				if (map[j].str==str)
 				{
 					bodyBuffer+=map[j].code;
 					break;
@@ -88,9 +98,9 @@ void Compressor::createBody()
 	if (!file.is_open()) return;
 	for (unsigned i=0; i<head.size(); ++i)
 	{
-		char buffer[1];
-		buffer[0]=head[i];
-		file.write(buffer,1);
+		string buffer;
+		buffer=head[i];
+		file.write((char*) buffer.c_str(),1);
 	}
 	while (!done)
 	{
@@ -104,7 +114,7 @@ void Compressor::createBody()
 			{
 				if (tmp[j]=='1')
 					intBuffer[i/8]+=(int)pow((double)2,(double)(7-j%8));
-			}	
+			}
 		for (unsigned i=0; i<tmp.size(); ++i)
 			buffer[i]=intBuffer[i];
 		file.write(buffer, tmp.size()/8);

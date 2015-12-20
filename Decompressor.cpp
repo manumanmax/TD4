@@ -1,6 +1,9 @@
 #include "Decompressor.h"
+#ifndef LENGTH
+#define LENGTH 2
+#endif // LENGTH
 
-Decompressor::Decompressor(void) 
+Decompressor::Decompressor(void)
 {
 	bodyBuffer="";
 	bodyBuffer.reserve(256);
@@ -22,8 +25,12 @@ void Decompressor::extract()
 	for (int i=0; i<mapSize; ++i)
 	{
 		Pair temp;
-		temp.ch=cFile.get();
-		chrMap.push_back(temp);
+		string str = "";
+		for(int j = 0; j < LENGTH && i <mapSize; j++){
+            str.push_back(cFile.get());
+		}
+		temp.str=str; // TODO : check if it works
+		strMap.push_back(temp);
 	}
 	for (int i=0; i<mapSize; ++i)
 		codeSizes.push_back(cFile.get());
@@ -31,7 +38,7 @@ void Decompressor::extract()
 		if (maxSize<codeSizes[i])
 			maxSize=codeSizes[i];
 	for (int i=0; i<mapSize; ++i)
-		chrMap[i].code=getFromBuffer(cFile,codeSizes[i]);
+		strMap[i].code=getFromBuffer(cFile,codeSizes[i]);
 	ofstream uFile;
 	uFile.open(toFile,ios::out);
 	while (!done)
@@ -96,7 +103,7 @@ string Decompressor::charToBin(unsigned char input)
 	return tmp;
 }
 
-char Decompressor::getNext(ifstream& str)
+string Decompressor::getNext(ifstream& str)
 {
 	while ((unsigned)maxSize>bodyBuffer.size() && !str.eof())
 	{
@@ -115,15 +122,15 @@ char Decompressor::getNext(ifstream& str)
 	for (int i=0; i<maxSize; ++i)
 	{
 		s+=bodyBuffer[i];
-		for (unsigned j=0; j<chrMap.size(); ++j)
-			if (s==chrMap[j].code)
+		for (unsigned j=0; j<strMap.size(); ++j)
+			if (s==strMap[j].code)
 			{
 				bodyBuffer=bodyBuffer.substr(i+1);
-				char chr=chrMap[j].ch;
-				return chr;
+				string str=strMap[j].str;
+				return str;
 			}
 	}
-	return -1;
+	return "";
 }
 
 void Decompressor::testFile(ostream& str)
@@ -131,10 +138,10 @@ void Decompressor::testFile(ostream& str)
 	ifstream file;
 	file.open(fromFile, ios::in);
 	str<<"\n\nTest:\n\nMap:\n";
-	for (unsigned i=0; i<chrMap.size(); ++i)
-		str<<chrMap[i].ch<<": "<<chrMap[i].code<<endl;
+	for (unsigned i=0; i<strMap.size(); ++i)
+		str<<strMap[i].str<<": "<<strMap[i].code<<endl;
 	str<<"\nBytes:\n";
-	while (!file.eof())
+	while (!file.eof()) // TODO : change it to something else
 	{
 		unsigned char chr = (unsigned char)file.get();
 		string bin=charToBin(chr);

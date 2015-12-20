@@ -21,7 +21,7 @@ public:
 	void addElement(string);
 	void removeLast();
 	void getPercentages(vector<double>&);
-	void getCharacters(vector<string>&);
+	void getStrings(vector<string>&);
 	void print();
 };
 

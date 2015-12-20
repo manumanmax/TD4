@@ -1,13 +1,13 @@
 
 #include "HuffmanCoding.h"
 
-HuffmanCoding::HuffmanCoding(vector<char>& chars, vector<double>& probs)
+HuffmanCoding::HuffmanCoding(vector<string>& strings, vector<double>& probs)
 {
-	if (chars.size()!=probs.size()) return;
-	for (unsigned i=0; i<chars.size(); ++i)
+	if (strings.size()!=probs.size()) return;
+	for (unsigned i=0; i<strings.size(); ++i)
 	{
 		nodes.push_back(new Node);
-		nodes[nodes.size()-1]->c=chars[i];
+		nodes[nodes.size()-1]->s=strings[i];
 		nodes[nodes.size()-1]->probab=probs[i];
 		nodes[nodes.size()-1]->code="";
 		nodes[nodes.size()-1]->right=nodes[nodes.size()-1]->left=NULL;
@@ -45,13 +45,13 @@ HuffmanCoding::~HuffmanCoding(void)
 		}
 }
 
-void HuffmanCoding::getCodes(vector<string>& cds, const vector<char>& chars)
+void HuffmanCoding::getCodes(vector<string>& cds, const vector<string>& strings)
 {
 	generateCodes();
-	int size = chars.size();
+	int size = strings.size();
 	for (int i=0; i<size; ++i)
 		for (int j=0; j<size; ++j)
-			if (codes[j].c==chars[i])
+			if (codes[j].s==strings[i])
 			{
 				cds.push_back(codes[j].code);
 				continue;
@@ -64,7 +64,7 @@ void HuffmanCoding::generateCodes()
 	{
 		Node *temp = nodes[0];
 		nodes[0] = new Node;
-		nodes[0]->c=0;
+		nodes[0]->s="";
 		nodes[0]->probab=temp->probab+nodes[1]->probab;
 		nodes[0]->left = new Node;
 		*(nodes[0]->left)=*temp;
@@ -84,7 +84,7 @@ void HuffmanCoding::generateCodes()
 		if (temp->left==NULL && temp->right==NULL)
 		{
 			Element tmp;
-			tmp.c=temp->c;
+			tmp.s=temp->s;
 			tmp.code=temp->code;
 			codes.push_back(tmp);
 			continue;

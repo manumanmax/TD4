@@ -9,13 +9,13 @@ class HuffmanCoding
 private:
 	struct Element
 	{
-		char c;
+		string s;
 		string code;
 	};
 
 	struct Node
 	{
-		char c;
+		string s;
 		string code;
 		double probab;
 		Node *left, *right;
@@ -34,8 +34,9 @@ private:
 	Node *root;
 	void generateCodes();
 public:
-	HuffmanCoding(vector<char>&, vector<double>&);
+	HuffmanCoding(vector<string>&, vector<double>&);
 	~HuffmanCoding(void);
-	void getCodes(vector<string>&, const vector<char>&);
+	void getCodes(vector<string>&, const vector<string>&);
+
 };
 

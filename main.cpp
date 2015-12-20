@@ -4,13 +4,12 @@
 #include "Compressor.h"
 #include "Decompressor.h"
 using namespace std;
-#define LENGTH 2
 int inspectFile(string);
 void createMap();
 
 CountingSet cs(LENGTH);
 vector<double> pers;
-vector<char> chrs;
+vector<string> strings;
 vector<string> codes;
 
 struct comparison
@@ -37,17 +36,18 @@ int main()
         cin.get();
         return 0;
     }
-    cs.print();
-    /*cs.getPercentages(pers);
-    cs.getCharacters(chrs);
-    HuffmanCoding hCodes(chrs,pers);
-    hCodes.getCodes(codes, chrs);
+
+    cs.getPercentages(pers);
+    cs.getStrings(strings);
+    //cs.print();
+    HuffmanCoding hCodes(strings,pers);
+    hCodes.getCodes(codes, strings);
     createMap();
     Compressor comp(map);
     comp.compress(fileName, comprName);
     cout<<"Compression done.";
 
-    decomprName="decompressed";
+    /*decomprName="decompressed";
 
     Decompressor decomp;
     decomp.decompress(comprName,decomprName);
@@ -99,10 +99,10 @@ int inspectFile(string name)
 
 void createMap()
 {
-	for (unsigned i=0; i<chrs.size(); ++i)
+	for (unsigned i=0; i<strings.size(); ++i)
 	{
 		Pair temp;
-		temp.ch=chrs[i];
+		temp.str=strings[i];
 		temp.code=codes[i];
 		map.push_back(temp);
 	}

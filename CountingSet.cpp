@@ -30,10 +30,11 @@ void CountingSet::getPercentages(vector<double>& percs)
 		percs[i]/=count;
 }
 
-void CountingSet::getCharacters(vector<string>& chars)
+
+void CountingSet::getStrings(vector<string>& strings)
 {
 	for (unsigned i=0; i<ems.size(); ++i)
-		chars.push_back(ems[i].s);
+		strings.push_back(ems[i].s);
 }
 
 void CountingSet::removeLast()
