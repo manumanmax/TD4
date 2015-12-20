@@ -43,7 +43,7 @@ int main()
     HuffmanCoding hCodes(strings,pers);
     hCodes.getCodes(codes, strings);
     createMap();
-    printMap();
+    //printMap();
     Compressor comp(map);
     comp.compress(fileName, comprName);
     cout<<"Compression done.";

@@ -5,7 +5,7 @@
 #include <string>
 #include "Compressor.h"
 #ifndef LENGTH
-#define LENGTH 3
+#define LENGTH 1
 #endif // LENGTH
 using namespace std;
 

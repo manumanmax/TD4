@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
-#define LENGTH 3
+#define LENGTH 1
 
 using namespace std;
 

@@ -39,7 +39,7 @@ void Compressor::compress(string from, string to)
 
 void Compressor::createHead()
 {
-	head.push_back(0);
+	head.push_back("");
 	char* sizeOfCode = (char*) malloc(sizeof(int));
 	sprintf(sizeOfCode,"%d",map.size());
 	head.push_back(sizeOfCode); // TODO : caution when decompressing
