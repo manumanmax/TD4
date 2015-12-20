@@ -1,7 +1,5 @@
 #include "Decompressor.h"
-#ifndef LENGTH
-#define LENGTH 2
-#endif // LENGTH
+
 
 Decompressor::Decompressor(void)
 {

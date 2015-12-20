@@ -4,7 +4,7 @@
 	<string>
 	<stdlib.h>
 
-1450607856 c:\users\emmanuel\documents\github\tdp4\compressor.h
+1450623691 c:\users\emmanuel\documents\github\tdp4\compressor.h
 	<vector>
 	<fstream>
 	<cmath>
@@ -22,7 +22,7 @@
 1450617306 source:c:\users\emmanuel\documents\github\tdp4\decompressor.cpp
 	"Decompressor.h"
 
-1450617223 c:\users\emmanuel\documents\github\tdp4\decompressor.h
+1450623679 c:\users\emmanuel\documents\github\tdp4\decompressor.h
 	<fstream>
 	<vector>
 	<algorithm>
@@ -37,7 +37,7 @@
 	<algorithm>
 	<queue>
 
-1450618185 source:c:\users\emmanuel\documents\github\tdp4\main.cpp
+1450623615 source:c:\users\emmanuel\documents\github\tdp4\main.cpp
 	<iostream>
 	"CountingSet.h"
 	"HuffmanCoding.h"

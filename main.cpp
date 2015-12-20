@@ -21,7 +21,7 @@ struct comparison
 } comparer;
 
 vector<Pair> map;
-
+void printMap();
 int main()
 {
 	string fileName, comprName, decomprName;
@@ -43,6 +43,7 @@ int main()
     HuffmanCoding hCodes(strings,pers);
     hCodes.getCodes(codes, strings);
     createMap();
+    printMap();
     Compressor comp(map);
     comp.compress(fileName, comprName);
     cout<<"Compression done.";
@@ -107,4 +108,11 @@ void createMap()
 		map.push_back(temp);
 	}
 	sort(map.begin(), map.end(), comparer);
+}
+
+void printMap(){
+
+    for(Pair p : map){
+        cout << p.str << " -> " << p.code << endl;
+    }
 }

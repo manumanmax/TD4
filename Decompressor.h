@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <string>
 #include "Compressor.h"
+#ifndef LENGTH
+#define LENGTH 3
+#endif // LENGTH
 using namespace std;
 
 class Decompressor
